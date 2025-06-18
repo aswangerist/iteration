@@ -1,0 +1,704 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aswang Chronicles</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kawit:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #BD0300;
+            --teal: #065B51;
+            --dark-green: #001915;
+            --light-gray: #B5BDAD;
+            --olive-green: #657B50;
+        }
+        
+        /* About Section Styles */
+        .about-section {
+            background: linear-gradient(135deg, var(--dark-green) 0%, rgba(6, 91, 81, 0.8) 100%);
+            color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23BD0300" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .about-image {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-image img {
+            border: 3px solid var(--red);
+            transition: all 0.3s ease;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(189, 3, 0, 0.4);
+        }
+        
+        .about-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .about-title {
+            font-family: 'Kawit', serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .mission-vision-card {
+            background: linear-gradient(145deg, rgba(181, 189, 173, 0.1), rgba(6, 91, 81, 0.2));
+            border: 2px solid var(--red);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-vision-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(189, 3, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mission-vision-card:hover::before {
+            opacity: 1;
+        }
+        
+        .mission-vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(189, 3, 0, 0.3);
+            border-color: var(--light-gray);
+        }
+        
+        .card-icon {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .icon-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(189, 3, 0, 0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .mission-vision-card:hover .icon-img {
+            transform: scale(1.1);
+            filter: drop-shadow(0 8px 16px rgba(189, 3, 0, 0.5));
+        }
+        
+        .card-title {
+            font-family: 'Kawit', serif;
+            font-size: 2rem;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--light-gray);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Responsive adjustments for about section */
+        @media (max-width: 768px) {
+            .about-content {
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+            }
+            
+            .about-text {
+                font-size: 1rem;
+            }
+            
+            .mission-vision-card {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+            }
+            
+            .card-text {
+                font-size: 1rem;
+            }
+            
+            .icon-img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-green);
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation Styles */
+        .navbar {
+            background-color: var(--light-gray) !important;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: var(--dark-green) !important;
+            font-size: 1.8rem;
+            font-family: 'Kawit', serif;
+        }
+        
+        .logo-icon {
+            width: 250px;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--dark-green) !important;
+            font-weight: 600;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--red) !important;
+            transform: translateY(-2px);
+        }
+        
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('Assets/WebsiteAssets/Background/BG1.PNG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(189, 3, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(189, 3, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(6, 91, 81, 0.1) 0%, transparent 50%);
+            animation: bloodDrip 8s ease-in-out infinite alternate;
+        }
+        
+        
+        @keyframes bloodPulse {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+        
+        .hero-content {
+            text-align: left;
+            z-index: 2;
+            position: relative;
+            padding-left: 8%;
+            max-width: 60%;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.4;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .hero-main-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1.1;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+            margin-bottom: 40px;
+            font-family: 'Kawit', serif;
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(189, 3, 0, 0.4);
+            }
+            to {
+                text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 40px rgba(189, 3, 0, 0.8);
+            }
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            line-height: 1.6;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, var(--red), #d42c00);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(189, 3, 0, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(189, 3, 0, 0.5);
+            background: linear-gradient(45deg, #d42c00, var(--red));
+        }
+        
+        /* Floating Horror Elements */
+        .floating-element {
+            position: absolute;
+            color: var(--red);
+            opacity: 0.2;
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 15%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 25%;
+            right: 25%;
+            animation-delay: 2.5s;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 25%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+        
+        .floating-element:nth-child(4) {
+            top: 40%;
+            right: 5%;
+            animation-delay: 7s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translateY(-15px) rotate(2deg);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(-25px) rotate(-2deg);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translateY(-10px) rotate(1deg);
+                opacity: 0.5;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                max-width: 70%;
+            }
+            
+            .hero-main-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 0;
+            }
+            
+            .logo-icon {
+                width: 200px;
+                height: auto;
+            }
+            
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+            
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                margin: 0 8px;
+            }
+            
+            .hero-content {
+                padding-left: 5%;
+                max-width: 90%;
+            }
+            
+            .hero-main-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .floating-element {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-main-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-description {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-green);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--red);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--teal);
+        }
+        
+        /* Blood drip effect */
+        .blood-drip {
+            position: absolute;
+            top: 0;
+            right: 20%;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--red));
+            animation: drip 4s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes drip {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="Assets/WebsiteAssets/Logos/Horizontal.png" alt="Aswang Chronicles Logo" class="logo-icon">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars" style="color: var(--dark-green); font-size: 1.5rem;"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#game">GAME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#archives">ASWANG ARCHIVES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">CONTACT US</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <!-- Floating Horror Elements -->
+        <div class="floating-element">
+            <i class="fas fa-ghost fa-4x"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-skull fa-3x"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-eye fa-3x"></i>
+        </div>
+        <div class="floating-element">
+            <i class="fas fa-spider fa-2x"></i>
+        </div>
+        
+        <!-- Blood drip effects -->
+        <div class="blood-drip" style="right: 15%; animation-delay: 0s;"></div>
+        <div class="blood-drip" style="right: 25%; animation-delay: 2s;"></div>
+        <div class="blood-drip" style="right: 35%; animation-delay: 4s;"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-subtitle">
+                    Welcome to a realm where myth meets modern storytelling!
+                </div>
+                <div class="hero-main-title">
+                    ASWANG<br>
+                    CHRONICLES
+                </div>
+                <div class="hero-description">
+                    This project is a fictional web graphic hypernarrative designed to reintroduce Tagalog folklore to the digital generation.
+                </div>
+                <button class="cta-button">
+                    <i class="fas fa-play-circle me-2"></i>
+                    Mag Simula
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section py-5" id="about">
+        <div class="container">
+            <!-- First Row -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-image">
+                        <img src="Assets/WebsiteAssets/Fillers/Filler 2.PNG" alt="Interactive Stories" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h3 class="about-title">Immersive Storytelling</h3>
+                        <p class="about-text">
+                            Through immersive choice-based stories and folklore archives, we're making sure these age-old tales don't just survive but rather thrive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <div class="about-image">
+                        <img src="Assets/WebsiteAssets/Background/BG3.png" alt="Explore Legends" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="about-content">
+                        <h3 class="about-title">Explore & Discover</h3>
+                        <p class="about-text">
+                            Whether you're here to learn, explore, or just have fun with some eerie yet fascinating legends, you're in the right place!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission & Vision Row -->
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="mission-vision-card">
+                        <div class="card-icon mb-3">
+                            <img src="Assets/WebsiteAssets/Iconmarks/Icon3.PNG" alt="Mission Icon" class="icon-img">
+                        </div>
+                        <h4 class="card-title">Mission</h4>
+                        <p class="card-text">
+                            To keep Tagalog folklore alive by blending it with interactive storytelling, digital media, and engaging content that promotes curiosity and cultural pride.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="mission-vision-card">
+                        <div class="card-icon mb-3">
+                            <img src="Assets/WebsiteAssets/Iconmarks/Icon2.PNG" alt="Vision Icon" class="icon-img">
+                        </div>
+                        <h4 class="card-title">Vision</h4>
+                        <p class="card-text">
+                            A future where Philippine folklore isn't just something you read about in history books but rather a thriving part of pop culture, conversations, and creative works for generations to come.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-element');
+            const speed = 0.5;
+
+            parallax.forEach(element => {
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero-main-title');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 150);
+            }
+        });
+    </script>
+</body>
+</html>
