@@ -188,7 +188,7 @@
         /* Aswang Types Grid */
         .aswang-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 40px;
             margin: 60px 0;
         }
@@ -197,10 +197,12 @@
             background: linear-gradient(145deg, rgba(181, 189, 173, 0.1), rgba(6, 91, 81, 0.2));
             border: 2px solid var(--red);
             border-radius: 20px;
-            padding: 30px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .aswang-card::before {
@@ -225,6 +227,29 @@
             border-color: var(--light-gray);
         }
         
+        .aswang-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .aswang-card:hover .aswang-image {
+            filter: brightness(1.1) contrast(1.1) saturate(1.2);
+        }
+        
+        .aswang-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+        
         .aswang-name {
             font-family: 'Kawit', serif;
             font-size: 2.2rem;
@@ -242,6 +267,22 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 2;
+            flex-grow: 1;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .aswang-card:hover .image-overlay {
+            opacity: 1;
         }
         
         /* Cultural Impact Section */
@@ -336,6 +377,24 @@
             }
         }
         
+        /* Image Error Handling */
+        .aswang-image {
+            background-color: rgba(181, 189, 173, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--red);
+            font-size: 1.2rem;
+            text-align: center;
+            border: 2px dashed var(--red);
+        }
+        
+        .aswang-image.loaded {
+            background-color: transparent;
+            border: none;
+            color: transparent;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
@@ -409,13 +468,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#home">HOME</a>
+                        <a class="nav-link" href="index.html">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#game">GAME</a>
+                        <a class="nav-link" href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test" target="_blank">GAME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#archives">ASWANG ARCHIVES</a>
+                        <a class="nav-link" href="Aswang_Archi.html">ASWANG ARCHIVES</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Contact.html">CONTACT US</a>
@@ -484,55 +543,79 @@
             
             <div class="aswang-grid">
                 <div class="aswang-card">
-                    <h3 class="aswang-name">Berbalang</h3>
-                    <p class="aswang-description">
-                        The Berbalang are mythical creatures in Filipino culture that resemble humans but have vampire-like features, including wings and protruding eyes. They are said to dig up graves to feast on corpses.
-                        <br><br>
-                        The only known defense against them is the cacao-nut pearl, an opal-like stone sometimes found inside cacao nuts. However, its magical properties only work for the one who originally found it. If passed on, its power fades, and when the finder dies, the pearl loses its glow.
-                    </p>
+                    <img src="Assets/WebsiteAssets/Aswangcards/Berbalang.PNG" alt="Berbalang" class="aswang-image" onerror="this.style.display='flex'; this.innerHTML='<div>Berbalang Image<br>Loading...</div>';" onload="this.classList.add('loaded');">
+                    <div class="image-overlay"></div>
+                    <div class="aswang-content">
+                        <h3 class="aswang-name">Berbalang</h3>
+                        <p class="aswang-description">
+                            The Berbalang are mythical creatures in Filipino culture that resemble humans but have vampire-like features, including wings and protruding eyes. They are said to dig up graves to feast on corpses.
+                            <br><br>
+                            The only known defense against them is the cacao-nut pearl, an opal-like stone sometimes found inside cacao nuts. However, its magical properties only work for the one who originally found it. If passed on, its power fades, and when the finder dies, the pearl loses its glow.
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="aswang-card">
-                    <h3 class="aswang-name">Sigbin</h3>
-                    <p class="aswang-description">
-                        A peculiar form of aswang that resembles a cross between a dog and a kangaroo. It is believed to walk backward with its head tucked between its legs and has the ability to become invisible. Even today, they are often blamed for the mysterious disappearance of chickens and livestock.
-                    </p>
+                    <img src="Assets/WebsiteAssets/Aswangcards/Sigbin.PNG" alt="Sigbin" class="aswang-image" onerror="this.style.display='flex'; this.innerHTML='<div>Sigbin Image<br>Loading...</div>';" onload="this.classList.add('loaded');">
+                    <div class="image-overlay"></div>
+                    <div class="aswang-content">
+                        <h3 class="aswang-name">Sigbin</h3>
+                        <p class="aswang-description">
+                            A peculiar form of aswang that resembles a cross between a dog and a kangaroo. It is believed to walk backward with its head tucked between its legs and has the ability to become invisible. Even today, they are often blamed for the mysterious disappearance of chickens and livestock.
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="aswang-card">
-                    <h3 class="aswang-name">Nuno</h3>
-                    <p class="aswang-description">
-                        The Nuno is a dwarf-like spirit in Philippine mythology, believed to reside in punso (mounds or anthills). Its name literally translates to "Ancestor who dwells in the anthill."
-                    </p>
+                    <img src="Assets/WebsiteAssets/Aswangcards/Nuno.PNG" alt="Nuno" class="aswang-image" onerror="this.style.display='flex'; this.innerHTML='<div>Nuno Image<br>Loading...</div>';" onload="this.classList.add('loaded');">
+                    <div class="image-overlay"></div>
+                    <div class="aswang-content">
+                        <h3 class="aswang-name">Nuno</h3>
+                        <p class="aswang-description">
+                            The Nuno is a dwarf-like spirit in Philippine mythology, believed to reside in punso (mounds or anthills). Its name literally translates to "Ancestor who dwells in the anthill."
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="aswang-card">
-                    <h3 class="aswang-name">Tik-Tik / WakWak</h3>
-                    <p class="aswang-description">
-                        Similar to the manananggal, these bird-like creatures prey on humans. Their name comes from the sound their wings make as they fly.
-                        <br><br>
-                        If the flapping sound is loud, it means they are far away, but if it becomes softer, they may be dangerously close—ready to strike. These creatures are said to harm their victims before feasting on their hearts.
-                    </p>
+                    <img src="Assets/WebsiteAssets/Aswangcards/Tiktik .PNG" alt="Tik-Tik" class="aswang-image" onerror="this.style.display='flex'; this.innerHTML='<div>Tik-Tik Image<br>Loading...</div>';" onload="this.classList.add('loaded');">
+                    <div class="image-overlay"></div>
+                    <div class="aswang-content">
+                        <h3 class="aswang-name">Tik-Tik / WakWak</h3>
+                        <p class="aswang-description">
+                            Similar to the manananggal, these bird-like creatures prey on humans. Their name comes from the sound their wings make as they fly.
+                            <br><br>
+                            If the flapping sound is loud, it means they are far away, but if it becomes softer, they may be dangerously close—ready to strike. These creatures are said to harm their victims before feasting on their hearts.
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="aswang-card">
-                    <h3 class="aswang-name">Manananggal</h3>
-                    <p class="aswang-description">
-                        The manananggal is a type of aswang that can separate its upper body from its lower half and take flight.
-                        <br><br>
-                        Like the tiktik, these creatures are known for preying on unborn babies by extending their long tongues from rooftops to feed on fetuses.
-                        <br><br>
-                        To defeat a manananggal, one must find its abandoned lower body during its nightly hunt and sprinkle salt, ashes, or garlic onto the exposed flesh. This prevents the creature from reattaching itself, leaving it vulnerable to sunlight, which ultimately destroys it.
-                    </p>
+                    <img src="Assets/WebsiteAssets/Aswangcards/Mananangal.PNG" alt="Manananggal" class="aswang-image" onerror="this.style.display='flex'; this.innerHTML='<div>Manananggal Image<br>Loading...</div>';" onload="this.classList.add('loaded');">
+                    <div class="image-overlay"></div>
+                    <div class="aswang-content">
+                        <h3 class="aswang-name">Manananggal</h3>
+                        <p class="aswang-description">
+                            The manananggal is a type of aswang that can separate its upper body from its lower half and take flight.
+                            <br><br>
+                            Like the tiktik, these creatures are known for preying on unborn babies by extending their long tongues from rooftops to feed on fetuses.
+                            <br><br>
+                            To defeat a manananggal, one must find its abandoned lower body during its nightly hunt and sprinkle salt, ashes, or garlic onto the exposed flesh. This prevents the creature from reattaching itself, leaving it vulnerable to sunlight, which ultimately destroys it.
+                        </p>
+                    </div>
                 </div>
                 
                 <div class="aswang-card">
-                    <h3 class="aswang-name">Kapre</h3>
-                    <p class="aswang-description">
-                        The Kapre is a giant, tree-dwelling creature in Philippine folklore, often depicted as a dark-skinned, cigar-smoking figure with glowing eyes. Unlike other aswang that actively hunt humans, the Kapre is more of a trickster, known for confusing travelers, making them lose their way in the forest, and sometimes forming bonds with humans.
-                        <br><br>
-                        They are believed to reside in large trees such as balete, mango, or acacia, watching over their territory. While not inherently malevolent, angering a Kapre can lead to misfortune. In some stories, they give enchanted stones to humans they favor, granting them luck or invisibility.
-                    </p>
+                    <img src="Assets/WebsiteAssets/Aswangcards/Kapre.PNG" alt="Kapre" class="aswang-image" onerror="this.style.display='flex'; this.innerHTML='<div>Kapre Image<br>Loading...</div>';" onload="this.classList.add('loaded');">
+                    <div class="image-overlay"></div>
+                    <div class="aswang-content">
+                        <h3 class="aswang-name">Kapre</h3>
+                        <p class="aswang-description">
+                            The Kapre is a giant, tree-dwelling creature in Philippine folklore, often depicted as a dark-skinned, cigar-smoking figure with glowing eyes. Unlike other aswang that actively hunt humans, the Kapre is more of a trickster, known for confusing travelers, making them lose their way in the forest, and sometimes forming bonds with humans.
+                            <br><br>
+                            They are believed to reside in large trees such as balete, mango, or acacia, watching over their territory. While not inherently malevolent, angering a Kapre can lead to misfortune. In some stories, they give enchanted stones to humans they favor, granting them luck or invisibility.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -648,6 +731,49 @@
                 // You can add a subtle sound effect here if desired
                 card.style.transition = 'all 0.3s ease';
             });
+        });
+
+        // Image loading animation
+        document.querySelectorAll('.aswang-image').forEach(img => {
+            img.addEventListener('load', () => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    img.style.opacity = '1';
+                }, 100);
+            });
+        });
+
+        // Add a subtle glow effect to cards on scroll
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.aswang-card');
+            const scrollPosition = window.scrollY + window.innerHeight;
+            
+            cards.forEach(card => {
+                const cardTop = card.offsetTop;
+                const cardHeight = card.offsetHeight;
+                
+                if (scrollPosition > cardTop && scrollPosition < cardTop + cardHeight + 200) {
+                    card.style.boxShadow = '0 20px 40px rgba(189, 3, 0, 0.2)';
+                } else {
+                    card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                }
+            });
+        });
+
+        // Preload images for better performance
+        const imageUrls = [
+            'Assets/WebsiteAssets/Aswangcards/Berbalang.PNG',
+            'Assets/WebsiteAssets/Aswangcards/Kapre.PNG', 
+            'Assets/WebsiteAssets/Aswangcards/',
+            'Assets/WebsiteAssets/Aswangcards/Nuno.PNG',
+            'Assets/WebsiteAssets/Aswangcards/Sigbin.PNG',
+            'Assets/WebsiteAssets/Aswangcards/Tiktik .PNG'
+        ];
+
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
         });
     </script>
 </body>
