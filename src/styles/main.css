@@ -1,0 +1,172 @@
+/* Aswang Chronicles - Main Styles */
+@import url('https://fonts.googleapis.com/css2?family=Kawit:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--dark-green);
+  color: var(--light-gray);
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-bottom: 80px; /* Space for bottom navigation on mobile */
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-green);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--teal);
+}
+
+/* Layout Utilities */
+.container-fluid {
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: var(--section-padding);
+}
+
+/* Typography */
+.title-main {
+  font-family: var(--font-header);
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1.1;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+.title-section {
+  font-family: var(--font-header);
+  font-size: 2.5rem;
+  color: var(--red);
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--light-gray);
+  font-style: italic;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(45deg, var(--red), #d42c00);
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: var(--transition-medium);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-heavy);
+  background: linear-gradient(45deg, #d42c00, var(--red));
+}
+
+/* Animations */
+@keyframes glow {
+  from {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(189, 3, 0, 0.4);
+  }
+  to {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 40px rgba(189, 3, 0, 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-15px) rotate(2deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-25px) rotate(-2deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-10px) rotate(1deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes bloodDrip {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .title-main {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-main {
+    font-size: 2.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-main {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}

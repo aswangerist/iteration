@@ -1,0 +1,204 @@
+// Simple vanilla router for Aswang Chronicles SPA
+class Router {
+  constructor(routes) {
+    this.routes = routes;
+    this.currentRoute = null;
+    this.contentElement = document.getElementById('app-content') || document.body;
+    
+    // Listen for route changes
+    window.addEventListener('popstate', () => this.handleRoute());
+    
+    // Handle initial route
+    this.handleRoute();
+  }
+
+  handleRoute() {
+    let path = window.location.pathname;
+    
+    // Handle clean URLs - map them to hash-based routing for SPA
+    const routeMap = {
+      '/': '/',
+      '/game': '/game',
+      '/archives': '/archives',
+      '/contact': '/contact',
+      '/admin': '/admin'
+    };
+    
+    // If path exists in routeMap, use it; otherwise default to home
+    path = routeMap[path] || '/';
+    
+    const route = this.routes[path] || this.routes['/'];
+    
+    if (route && this.currentRoute !== path) {
+      this.currentRoute = path;
+      this.loadComponent(route);
+      
+      // Update browser URL without page reload
+      if (window.location.pathname !== path) {
+        window.history.pushState(null, '', path);
+      }
+    }
+  }
+
+  async loadComponent(component) {
+    try {
+      // Show loading state
+      this.showLoading();
+      
+      // If component is a function, call it
+      if (typeof component === 'function') {
+        const html = await component();
+        this.renderContent(html);
+        this.updateActiveNavigation();
+      } else {
+        this.renderContent(component);
+        this.updateActiveNavigation();
+      }
+    } catch (error) {
+      console.error('Error loading component:', error);
+      this.renderContent(this.getErrorPage());
+    }
+  }
+
+  updateActiveNavigation() {
+    // Update active state for navigation links
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
+      const route = link.getAttribute('data-route');
+      if (route === currentPath) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  showLoading() {
+    this.contentElement.innerHTML = `
+      <div class="loading-screen">
+        <div class="container text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+          <i class="fas fa-ghost fa-3x mb-4 text-danger" style="animation: float 2s ease-in-out infinite;"></i>
+          <h2 style="color: var(--red); font-family: var(--font-header);">Loading Folklore...</h2>
+          <div class="spinner-border text-danger mt-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  getErrorPage() {
+    return `
+      <div class="error-page">
+        <div class="container text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+          <i class="fas fa-skull fa-4x mb-4 text-danger"></i>
+          <h1 style="color: var(--red); font-family: var(--font-header);">The Spirits Are Restless</h1>
+          <p style="color: var(--light-gray); font-size: 1.2rem;">Something went wrong in the realm of folklore.</p>
+          <button class="btn btn-primary mt-3" onclick="window.location.reload()">
+            <i class="fas fa-redo me-2"></i>Try Again
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  renderContent(html) {
+    if (this.contentElement) {
+      this.contentElement.innerHTML = html;
+      
+      // Re-initialize animations for new content
+      if (window.initAnimations) {
+        window.initAnimations();
+      }
+      
+      // Re-initialize navigation for new content
+      if (window.initNavigation) {
+        window.initNavigation();
+      }
+      
+      // Re-initialize lazy loading for new content
+      import('./lazyLoader.js').then(module => {
+        const lazyLoader = module.getLazyLoader();
+        if (lazyLoader) {
+          lazyLoader.observeImages();
+          lazyLoader.observeAnimations();
+        }
+      });
+      
+      // Initialize comment system if on game page
+      if (window.location.pathname === '/game' && document.getElementById('commentForm')) {
+        // Clean up previous comment system if it exists
+        if (window.currentCommentSystem) {
+          window.currentCommentSystem.destroy()
+        }
+        
+        import('./comments.js').then(module => {
+          window.currentCommentSystem = new module.CommentSystem();
+        }).catch(error => {
+          console.warn('Could not load comment system:', error);
+        });
+
+        // Initialize reporting system
+        import('./reportingSystem.js').then(module => {
+          // Reporting system auto-initializes
+        }).catch(error => {
+          console.warn('Could not load reporting system:', error);
+        });
+      }
+
+      // Initialize admin system if on admin page
+      if (window.location.pathname === '/admin') {
+        // Clean up previous admin system if it exists
+        if (window.currentAdminSystem) {
+          window.currentAdminSystem.destroy()
+        }
+        
+        import('./adminSystem.js').then(module => {
+          window.currentAdminSystem = module.initAdminPage();
+        }).catch(error => {
+          console.warn('Could not load admin system:', error);
+        });
+      }
+      
+      // Initialize share system if on game page
+      if (window.location.pathname === '/game' && document.querySelector('.share-buttons')) {
+        import('./share.js').then(module => {
+          new module.ShareSystem();
+        }).catch(error => {
+          console.warn('Could not load share system:', error);
+        });
+      }
+      
+      // Notify mobile navigation of route change
+      import('./mobileNavigation.js').then(module => {
+        const mobileNav = module.getMobileNavigation();
+        if (mobileNav) {
+          mobileNav.onRouteChange();
+        }
+      });
+      
+      // Scroll to top on route change
+      window.scrollTo(0, 0);
+    }
+  }
+
+  navigateTo(path) {
+    window.history.pushState(null, '', path);
+    this.handleRoute();
+  }
+}
+
+let router = null;
+
+export function initRouter(routes) {
+  router = new Router(routes);
+  
+  // Make router globally accessible
+  window.router = router;
+  
+  console.log('🧛‍♀️ Router initialized with routes:', Object.keys(routes));
+  return router;
+}
+
+export function getRouter() {
+  return router;
+}
