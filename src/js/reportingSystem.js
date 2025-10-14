@@ -22,6 +22,11 @@ export class ReportingSystem {
   addReportButtons() {
     // Add report buttons to existing comments
     document.addEventListener('click', (e) => {
+      // Check if event and target exist and have classList
+      if (!e || !e.target || !e.target.classList) {
+        return;
+      }
+      
       if (e.target.classList.contains('report-comment-btn')) {
         e.preventDefault()
         const commentId = e.target.dataset.commentId

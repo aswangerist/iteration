@@ -26,6 +26,11 @@ export function initNavigation() {
 
   // Handle route navigation for buttons and links
   document.addEventListener('click', (e) => {
+    // Check if event and target exist and have the closest method
+    if (!e || !e.target || typeof e.target.closest !== 'function') {
+      return;
+    }
+    
     // Check if the clicked element or its parent has data-route attribute
     const routeElement = e.target.closest('[data-route]');
     if (routeElement) {

@@ -36,31 +36,80 @@ export function GamePage() {
                 <div class="col-12">
                     <div class="game-embed-section animate-on-scroll">
                         <div class="text-center mb-4">
-                            <h1 class="game-embed-title">Aswang Chronicles Interactive Experience</h1>
-                            <p class="game-embed-subtitle">Immerse yourself in Filipino folklore through our interactive narrative game</p>
+                            <h1 class="game-embed-title">Aswang Chronicles: Spoon Test</h1>
+                            <p class="game-embed-subtitle">Experience the prototype of our interactive Filipino folklore adventure</p>
                         </div>
                         <div class="game-embed-container">
                             <iframe 
-                                src="https://aswang-chronicles.vercel.app/" 
-                                class="game-embed-iframe"
                                 frameborder="0" 
-                                allowfullscreen
-                                title="Aswang Chronicles Interactive Game"
-                                loading="lazy">
+                                src="https://itch.io/embed-upload/14090605?color=1e1e1e" 
+                                width="1080" 
+                                height="800"
+                                class="game-embed-iframe"
+                                title="Aswang Chronicles: Spoon Test"
+                                loading="lazy"
+                                allow="autoplay; fullscreen"
+                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
+                                <a href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test">Play Aswang Chronicles: Spoon Test on itch.io</a>
                             </iframe>
-                            <div class="game-embed-overlay">
-                                <div class="game-embed-play">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Click to Play</span>
-                                </div>
-                            </div>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="https://aswang-chronicles.vercel.app/" target="_blank" class="btn-play-fullscreen">
-                                <i class="fas fa-external-link-alt me-2"></i>
+                            <button onclick="enterGameFullscreen()" class="btn-play-fullscreen">
+                                <i class="fas fa-expand me-2"></i>
                                 Play in Full Screen
-                            </a>
+                            </button>
                             <a href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test" target="_blank" class="btn-play-itch ms-3">
+                                <i class="fab fa-itch-io me-2"></i>
+                                Play on Itch.io
+                            </a>
+                        </div>
+                        
+                        <!-- Background Toggle -->
+                        <div class="text-center mt-4">
+                            <div class="background-toggle-container">
+                                <label class="background-toggle-label">
+                                    <input type="checkbox" id="backgroundToggle" class="background-toggle-checkbox">
+                                    <span class="background-toggle-slider"></span>
+                                    <span class="background-toggle-text">
+                                        <i class="fas fa-moon me-2"></i>
+                                        Dark Mode for Better Gaming
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Game Embed Section -->
+    <section class="game-section py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="game-embed-section animate-on-scroll">
+                        <div class="text-center mb-4">
+                            <h2 class="game-embed-title">Aswang Chronicles: Left In the Shadows</h2>
+                            <p class="game-embed-subtitle">Discover another chapter in our Filipino folklore collection</p>
+                        </div>
+                        <div class="second-game-embed-container">
+                            <iframe 
+                                frameborder="0" 
+                                src="https://itch.io/embed-upload/15242150?color=333333" 
+                                allowfullscreen="" 
+                                width="1080" 
+                                height="600"
+                                class="second-game-embed-iframe"
+                                title="Aswang Chronicles: Left In the Shadows"
+                                loading="lazy"
+                                allow="autoplay; fullscreen"
+                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
+                                <a href="https://aswang-chronicles.itch.io/aswang-chronicles-left-in-the-shadows">Play Aswang Chronicles: Left In the Shadows on itch.io</a>
+                            </iframe>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="https://aswang-chronicles.itch.io/aswang-chronicles-left-in-the-shadows" target="_blank" class="btn-play-itch">
                                 <i class="fab fa-itch-io me-2"></i>
                                 Play on Itch.io
                             </a>

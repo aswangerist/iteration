@@ -64,6 +64,11 @@ export class CommentSystem {
   setupEventListeners() {
     // Star rating
     document.addEventListener('click', (e) => {
+      // Check if event and target exist and have the matches method
+      if (!e || !e.target || typeof e.target.matches !== 'function') {
+        return;
+      }
+      
       if (e.target.matches('.star')) {
         this.handleStarClick(e.target)
       }
@@ -71,6 +76,11 @@ export class CommentSystem {
 
     // Character counter
     document.addEventListener('input', (e) => {
+      // Check if event and target exist and have the matches method
+      if (!e || !e.target || typeof e.target.matches !== 'function') {
+        return;
+      }
+      
       if (e.target.matches('#commentText')) {
         this.updateCharacterCount(e.target)
       }

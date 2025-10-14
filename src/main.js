@@ -13,6 +13,7 @@ import { initRouter } from './js/router.js'
 import { initLazyLoading, PerformanceMonitor } from './js/lazyLoader.js'
 import { initMobileNavigation } from './js/mobileNavigation.js'
 import { CommentSystem } from './js/comments.js'
+import { initGameControls } from './js/gameControls.js'
 
 // Import components
 import { HomePage } from './components/HomePage.js'
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnimations()
   initLazyLoading()
   initMobileNavigation()
+  initGameControls()
   initBackToTop()
   initScrollAnimations()
   
@@ -102,13 +104,30 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize game embed functionality
   initGameEmbed()
   
+  // Developer console information
   console.log('🧛‍♀️ Aswang Chronicles initialized with Vite + PWA + Lazy Loading + Mobile Navigation + Back to Top + Game Embed!')
+  
+  // Note about expected warnings
+  setTimeout(() => {
+    console.group('📋 Developer Notes');
+    console.info('Some console warnings are expected from third-party embeds:');
+    console.info('• Firebase development mode messages');
+    console.info('• Itch.io iframe feature warnings (monetization, xr)');
+    console.info('• AudioContext warnings (resolve on user interaction)');
+    console.info('These do not affect functionality and can be safely ignored.');
+    console.groupEnd();
+  }, 2000);
 })
 
 // Game Embed functionality
 function initGameEmbed() {
   // Handle game embed overlay click
   document.addEventListener('click', (e) => {
+    // Check if event and target exist and have the closest method
+    if (!e || !e.target || typeof e.target.closest !== 'function') {
+      return;
+    }
+    
     const overlay = e.target.closest('.game-embed-overlay')
     if (overlay) {
       overlay.style.opacity = '0'
@@ -124,6 +143,11 @@ function initGameEmbed() {
   
   // Re-enable overlay when clicking outside the game area
   document.addEventListener('click', (e) => {
+    // Check if event and target exist and have the closest method
+    if (!e || !e.target || typeof e.target.closest !== 'function') {
+      return;
+    }
+    
     if (!e.target.closest('.game-embed-container')) {
       const overlays = document.querySelectorAll('.game-embed-overlay')
       overlays.forEach(overlay => {
@@ -164,6 +188,11 @@ function initBackToTop() {
   
   // Use event delegation for button click since it's dynamically loaded
   document.addEventListener('click', (e) => {
+    // Check if event and target exist and have the closest method
+    if (!e || !e.target || typeof e.target.closest !== 'function') {
+      return;
+    }
+    
     if (e.target.closest('#backToTop')) {
       e.preventDefault()
       scrollToTop()

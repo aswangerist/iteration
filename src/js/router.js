@@ -105,6 +105,9 @@ class Router {
     if (this.contentElement) {
       this.contentElement.innerHTML = html;
       
+      // Remove loading class from body to restore scrolling
+      document.body.classList.remove('loading');
+      
       // Re-initialize animations for new content
       if (window.initAnimations) {
         window.initAnimations();
@@ -113,6 +116,24 @@ class Router {
       // Re-initialize navigation for new content
       if (window.initNavigation) {
         window.initNavigation();
+      }
+      
+      // Re-initialize game controls for new content
+      if (window.location.pathname === '/game') {
+        import('./gameControls.js').then(module => {
+          module.initGameControls();
+        }).catch(error => {
+          console.warn('Could not load game controls:', error);
+        });
+      }
+      
+      // Re-initialize archives modal for new content
+      if (window.location.pathname === '/archives') {
+        import('./archivesModal.js').then(module => {
+          module.initArchivesModal();
+        }).catch(error => {
+          console.warn('Could not load archives modal:', error);
+        });
       }
       
       // Re-initialize lazy loading for new content

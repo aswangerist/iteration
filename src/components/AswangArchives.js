@@ -97,7 +97,11 @@ export function AswangArchives() {
             <h2 class="section-title animate-on-scroll">Types of Aswang</h2>
             
             <div class="aswang-grid">
-                <div class="aswang-card animate-on-scroll">
+                <div class="aswang-card animate-on-scroll" 
+                     data-creature="berbalang"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Berbalang.PNG"
+                     data-title="Berbalang"
+                     data-description="The Berbalang are mythical creatures in Filipino culture that resemble humans but have vampire-like features, including wings and protruding eyes. They are said to dig up graves to feast on corpses. The only known defense against them is the cacao-nut pearl, an opal-like stone sometimes found inside cacao nuts. However, its magical properties only work for the one who originally found it. If passed on, its power fades, and when the finder dies, the pearl loses its glow.">
                     <img 
                         data-src="/Assets/WebsiteAssets/Aswangcards/Berbalang.PNG" 
                         alt="Berbalang" 
@@ -115,7 +119,11 @@ export function AswangArchives() {
                     </div>
                 </div>
                 
-                <div class="aswang-card animate-on-scroll">
+                <div class="aswang-card animate-on-scroll"
+                     data-creature="sigbin"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Sigbin.PNG"
+                     data-title="Sigbin"
+                     data-description="A peculiar form of aswang that resembles a cross between a dog and a kangaroo. It is believed to walk backward with its head tucked between its legs and has the ability to become invisible. Even today, they are often blamed for the mysterious disappearance of chickens and livestock.">
                     <img 
                         data-src="/Assets/WebsiteAssets/Aswangcards/Sigbin.PNG" 
                         alt="Sigbin" 
@@ -131,7 +139,11 @@ export function AswangArchives() {
                     </div>
                 </div>
                 
-                <div class="aswang-card animate-on-scroll">
+                <div class="aswang-card animate-on-scroll"
+                     data-creature="nuno"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Nuno.PNG"
+                     data-title="Nuno"
+                     data-description="The Nuno is a dwarf-like spirit in Philippine mythology, believed to reside in punso (mounds or anthills). Its name literally translates to 'Ancestor who dwells in the anthill.'">
                     <img 
                         data-src="/Assets/WebsiteAssets/Aswangcards/Nuno.PNG" 
                         alt="Nuno" 
@@ -147,7 +159,11 @@ export function AswangArchives() {
                     </div>
                 </div>
                 
-                <div class="aswang-card animate-on-scroll">
+                <div class="aswang-card animate-on-scroll"
+                     data-creature="tiktik"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Tiktik .PNG"
+                     data-title="Tik-Tik / WakWak"
+                     data-description="Similar to the manananggal, these bird-like creatures prey on humans. Their name comes from the sound their wings make as they fly. If the flapping sound is loud, it means they are far away, but if it becomes softer, they may be dangerously close—ready to strike. These creatures are said to harm their victims before feasting on their hearts.">
                     <img 
                         data-src="/Assets/WebsiteAssets/Aswangcards/Tiktik .PNG" 
                         alt="Tik-Tik" 
@@ -165,7 +181,11 @@ export function AswangArchives() {
                     </div>
                 </div>
                 
-                <div class="aswang-card animate-on-scroll">
+                <div class="aswang-card animate-on-scroll"
+                     data-creature="manananggal"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Mananangal.PNG"
+                     data-title="Manananggal"
+                     data-description="The manananggal is a type of aswang that can separate its upper body from its lower half and take flight. Like the tiktik, these creatures are known for preying on unborn babies by extending their long tongues from rooftops to feed on fetuses. To defeat a manananggal, one must find its abandoned lower body during its nightly hunt and sprinkle salt, ashes, or garlic onto the exposed flesh. This prevents the creature from reattaching itself, leaving it vulnerable to sunlight, which ultimately destroys it.">
                     <img 
                         data-src="/Assets/WebsiteAssets/Aswangcards/Mananangal.PNG" 
                         alt="Manananggal" 
@@ -185,7 +205,11 @@ export function AswangArchives() {
                     </div>
                 </div>
                 
-                <div class="aswang-card animate-on-scroll">
+                <div class="aswang-card animate-on-scroll"
+                     data-creature="kapre"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Kapre.PNG"
+                     data-title="Kapre"
+                     data-description="The Kapre is a giant, tree-dwelling creature in Philippine folklore, often depicted as a dark-skinned, cigar-smoking figure with glowing eyes. Unlike other aswang that actively hunt humans, the Kapre is more of a trickster, known for confusing travelers, making them lose their way in the forest, and sometimes forming bonds with humans. They are believed to reside in large trees such as balete, mango, or acacia, watching over their territory. While not inherently malevolent, angering a Kapre can lead to misfortune. In some stories, they give enchanted stones to humans they favor, granting them luck or invisibility.">
                     <img 
                         data-src="/Assets/WebsiteAssets/Aswangcards/Kapre.PNG" 
                         alt="Kapre" 
@@ -329,5 +353,19 @@ export function AswangArchives() {
     <button id="backToTop" class="back-to-top" title="Back to Top">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div class="modal-info">
+                    <h3 id="modalTitle" class="modal-title"></h3>
+                    <p id="modalDescription" class="modal-description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
   `;
 }
