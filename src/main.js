@@ -13,7 +13,6 @@ import { initRouter } from './js/router.js'
 import { initLazyLoading, PerformanceMonitor } from './js/lazyLoader.js'
 import { initMobileNavigation } from './js/mobileNavigation.js'
 import { CommentSystem } from './js/comments.js'
-import { initGameControls } from './js/gameControls.js'
 
 // Import components
 import { HomePage } from './components/HomePage.js'
@@ -85,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnimations()
   initLazyLoading()
   initMobileNavigation()
-  initGameControls()
   initBackToTop()
   initScrollAnimations()
   

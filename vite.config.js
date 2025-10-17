@@ -23,7 +23,7 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
+      includeAssets: ['favicon.ico', 'icon-192.png', 'icon-512.png'],
       manifest: {
         name: 'Aswang Chronicles',
         short_name: 'AswangChronicles',
@@ -36,13 +36,13 @@ export default defineConfig({
         orientation: 'portrait-primary',
         icons: [
           {
-            src: '/Assets/WebsiteAssets/Logos/icon-192.png',
+            src: '/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any maskable'
           },
           {
-            src: '/Assets/WebsiteAssets/Logos/icon-512.png',
+            src: '/icon-512.png',
             sizes: '512x512',
             type: 'image/png'
           }

@@ -62,7 +62,7 @@ export function HomePage() {
                     CHRONICLES
                 </div>
                 <div class="hero-subtitle">
-                    Immerse yourself in authentic Filipino mythology through interactive storytelling and digital exploration
+                    Immerse yourself in Filipino mythology through interactive storytelling and digital exploration!
                 </div>
                 <div class="hero-actions">
                     <button class="cta-button primary" data-route="/game">
@@ -83,7 +83,7 @@ export function HomePage() {
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2 class="section-title animate-on-scroll">Why Aswang Chronicles?</h2>
-                <p class="section-subtitle animate-on-scroll">Bridging ancient wisdom with modern storytelling</p>
+                <p class="section-subtitle animate-on-scroll"></p>
             </div>
 
             <!-- Features Grid -->
@@ -93,8 +93,9 @@ export function HomePage() {
                         <div class="feature-icon">
                             <i class="fas fa-book-open"></i>
                         </div>
-                        <h4 class="feature-title">Interactive Stories</h4>
-                        <p class="feature-text">Experience Filipino folklore through immersive, choice-driven narratives that bring ancient tales to life.</p>
+                        <h4 class="feature-title">Explore Archives</h4>
+                        <p class="feature-text">Uncover stories that bridge folklore with modern storytelling.
+</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -102,8 +103,9 @@ export function HomePage() {
                         <div class="feature-icon">
                             <i class="fas fa-map-marked-alt"></i>
                         </div>
-                        <h4 class="feature-title">Regional Exploration</h4>
-                        <p class="feature-text">Discover unique folklore from different Philippine regions, each with distinct cultural characteristics.</p>
+                        <h4 class="feature-title">Interactive Stories</h4>
+                        <p class="feature-text">Experience Filipino folklore through immersive, choice-driven narratives that bring ancient tales to life.
+</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -112,7 +114,8 @@ export function HomePage() {
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <h4 class="feature-title">Cultural Learning</h4>
-                        <p class="feature-text">Learn about Filipino heritage through engaging content that preserves and celebrates tradition.</p>
+                        <p class="feature-text">Learn about Filipino heritage through engaging content that preserves and celebrates tradition.
+</p>
                     </div>
                 </div>
             </div>
@@ -156,9 +159,10 @@ export function HomePage() {
                                 loading="lazy"
                             >
                         </div>
-                        <h4 class="card-title">Our Mission</h4>
+                        <h4 class="card-title">Mission</h4>
                         <p class="card-text">
-                            Preserving Filipino folklore through innovative digital storytelling that engages modern audiences while respecting traditional narratives.
+                            To keep Tagalog folklore alive by blending it with interactive storytelling, digital media, and engaging content that promotes curiosity and cultural pride.
+
                         </p>
                     </div>
                 </div>
@@ -174,8 +178,33 @@ export function HomePage() {
                         </div>
                         <h4 class="card-title">Our Vision</h4>
                         <p class="card-text">
-                            A world where Filipino folklore thrives in popular culture, inspiring pride in heritage and fostering cultural understanding across generations.
+                            A future where Philippine folklore isn’t just something you read about in history books but rather a thriving part of pop culture, conversations, and creative works for generations to come.
                         </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Section -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="welcome-section-card animate-on-scroll text-center mt-5">
+                        <div class="welcome-content">
+                            <h3 class="content-title mb-4">Welcome to Our Realm</h3>
+                            <div class="welcome-text">
+                                <p class="mb-3">
+                                    Welcome to a realm where myth meets modern storytelling!
+                                </p>
+                                <p class="mb-0">
+                                    This project is a fictional web graphic hypernarrative designed to reintroduce Tagalog folklore to the digital generation.
+                                </p>
+                                <p class="mb-0">
+                                    Through immersive choice-based stories and folklore archives, we're making sure these age-old tales don't just survive but rather thrive.
+                                </p>
+                                <p class="mb-0">
+                                    Whether you're here to learn, explore, or just have fun with some eerie yet fascinating legends, you're in the right place!
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

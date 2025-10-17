@@ -2,6 +2,12 @@
 export function initGameControls() {
   console.log('Game controls initialization started');
   
+  // Only initialize if we're on the game page
+  if (window.location.pathname !== '/game') {
+    console.log('Not on game page, skipping game controls initialization');
+    return;
+  }
+  
   // Initialize warning documentation
   initWarningDocumentation();
   
@@ -32,7 +38,12 @@ function initBackgroundToggle() {
   console.log('Current URL:', window.location.pathname);
   
   if (!toggle) {
-    console.warn('Background toggle element not found');
+    // Only warn if we're actually on the game page
+    if (window.location.pathname === '/game') {
+      console.warn('Background toggle element not found on game page');
+    } else {
+      console.log('Background toggle not found - not on game page');
+    }
     return;
   }
   
@@ -194,5 +205,6 @@ function initWarningDocumentation() {
   console.info('• "Unrecognized feature: xr" - WebXR API (experimental)');
   console.info('• "Allow attribute will take precedence" - Internal itch.io iframe settings');
   console.info('• "AudioContext warnings" - Normal browser security, will resolve on user interaction');
+  console.info('• Permissions policy violations - Explicitly denied for security (camera, microphone, etc.)');
   console.groupEnd();
 }

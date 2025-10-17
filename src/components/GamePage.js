@@ -48,7 +48,7 @@ export function GamePage() {
                                 class="game-embed-iframe"
                                 title="Aswang Chronicles: Spoon Test"
                                 loading="lazy"
-                                allow="autoplay; fullscreen"
+                                allow="autoplay; fullscreen; camera 'none'; microphone 'none'; geolocation 'none'; midi 'none'; accelerometer 'none'; gyroscope 'none'; xr-spatial-tracking 'none'; cross-origin-isolated 'none'"
                                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
                                 <a href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test">Play Aswang Chronicles: Spoon Test on itch.io</a>
                             </iframe>
@@ -103,7 +103,7 @@ export function GamePage() {
                                 class="second-game-embed-iframe"
                                 title="Aswang Chronicles: Left In the Shadows"
                                 loading="lazy"
-                                allow="autoplay; fullscreen"
+                                allow="autoplay; fullscreen; camera 'none'; microphone 'none'; geolocation 'none'; midi 'none'; accelerometer 'none'; gyroscope 'none'; xr-spatial-tracking 'none'; cross-origin-isolated 'none'"
                                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
                                 <a href="https://aswang-chronicles.itch.io/aswang-chronicles-left-in-the-shadows">Play Aswang Chronicles: Left In the Shadows on itch.io</a>
                             </iframe>

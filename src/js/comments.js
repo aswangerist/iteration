@@ -31,6 +31,9 @@ export class CommentSystem {
   }
 
   async init() {
+    // Wait for DOM elements to be available
+    await this.waitForElements()
+    
     this.setupEventListeners()
     
     // Check Firebase status
@@ -51,6 +54,29 @@ export class CommentSystem {
     }
     
     this.updateStats()
+  }
+
+  async waitForElements() {
+    // Wait for essential DOM elements to be available
+    const maxWait = 5000 // 5 seconds max wait
+    const checkInterval = 100 // Check every 100ms
+    let waited = 0
+
+    while (waited < maxWait) {
+      const commentsList = document.getElementById('commentsList')
+      const commentsEmpty = document.getElementById('commentsEmpty')
+      const commentForm = document.getElementById('commentForm')
+
+      if (commentsList && commentsEmpty && commentForm) {
+        console.log('✅ Comment system DOM elements ready')
+        return
+      }
+
+      await new Promise(resolve => setTimeout(resolve, checkInterval))
+      waited += checkInterval
+    }
+
+    console.warn('⚠️ Comment system DOM elements not found after waiting')
   }
 
   updateConnectionStatus(status, message) {
@@ -316,6 +342,12 @@ export class CommentSystem {
     const commentsList = document.getElementById('commentsList')
     const commentsEmpty = document.getElementById('commentsEmpty')
 
+    // Check if elements exist (component might not be mounted)
+    if (!commentsList || !commentsEmpty) {
+      console.warn('Comments elements not found - component may not be mounted')
+      return
+    }
+
     // Filter comments to only show approved or pending review (hide rejected)
     const visibleComments = this.comments.filter(comment => 
       !comment.status || comment.status === 'approved' || comment.status === 'pending_review'
@@ -404,9 +436,14 @@ export class CommentSystem {
     const recommendPercent = totalComments > 0 ? 
       Math.round((this.comments.filter(comment => comment.rating >= 4).length / totalComments) * 100) : 0
 
-    document.getElementById('totalComments').textContent = totalComments
-    document.getElementById('averageRating').textContent = averageRating
-    document.getElementById('recommendPercent').textContent = `${recommendPercent}%`
+    // Check if elements exist before updating
+    const totalCommentsEl = document.getElementById('totalComments')
+    const averageRatingEl = document.getElementById('averageRating')
+    const recommendPercentEl = document.getElementById('recommendPercent')
+
+    if (totalCommentsEl) totalCommentsEl.textContent = totalComments
+    if (averageRatingEl) averageRatingEl.textContent = averageRating
+    if (recommendPercentEl) recommendPercentEl.textContent = `${recommendPercent}%`
   }
 
   showNotification(message, type = 'info') {
