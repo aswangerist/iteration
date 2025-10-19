@@ -27,11 +27,40 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
-    <!-- Vite will inject CSS and fonts automatically -->
+    <!-- Preload Critical Fonts with swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kawit:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kawit:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
+    
+    <!-- Preload Critical Images for LCP -->
+    <link rel="preload" href="/Assets/WebsiteAssets/Logos/Horizontal.png" as="image" type="image/png">
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="dns-prefetch" href="//itch.io">
+    <link rel="preconnect" href="https://itch.io" crossorigin>
+    
+    <!-- Critical CSS Inline -->
     <style>
-        /* Import fonts - must be first */
-        @import url('https://fonts.googleapis.com/css2?family=Kawit:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+        /* Critical above-the-fold styles */
+        body { 
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; 
+            margin: 0; 
+            background: #001915; 
+            color: #B5BDAD; 
+        }
+        .loading-screen { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: #001915; 
+            z-index: 9999; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
 
         :root {
             --red: #BD0300;

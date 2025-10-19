@@ -13,6 +13,8 @@ import { initRouter } from './js/router.js'
 import { initLazyLoading, PerformanceMonitor } from './js/lazyLoader.js'
 import { initMobileNavigation } from './js/mobileNavigation.js'
 import { CommentSystem } from './js/comments.js'
+// Import performance utilities
+import { initLazyLoading as initImageLazyLoading } from './utils/lazyLoading.js'
 
 // Import components
 import { HomePage } from './components/HomePage.js'
@@ -86,6 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNavigation()
   initBackToTop()
   initScrollAnimations()
+  
+  // Initialize image lazy loading
+  initImageLazyLoading()
   
   // Initialize performance monitoring
   PerformanceMonitor.logWebVitals()

@@ -99,7 +99,7 @@ export function GamePage() {
                                 src="https://itch.io/embed-upload/15242150?color=333333" 
                                 allowfullscreen="" 
                                 width="1080" 
-                                height="600"
+                                height="800"
                                 class="second-game-embed-iframe"
                                 title="Aswang Chronicles: Left In the Shadows"
                                 loading="lazy"
@@ -110,6 +110,39 @@ export function GamePage() {
                         </div>
                         <div class="text-center mt-4">
                             <a href="https://aswang-chronicles.itch.io/aswang-chronicles-left-in-the-shadows" target="_blank" class="btn-play-itch">
+                                <i class="fab fa-itch-io me-2"></i>
+                                Play on Itch.io
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Game -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="game-embed-section animate-on-scroll">
+                        <div class="text-center mb-4">
+                            <h2 class="game-embed-title">Aswang Chronicles: Smoke Break</h2>
+                            <p class="game-embed-subtitle">Another thrilling chapter in our Filipino folklore series</p>
+                        </div>
+                        <div class="third-game-embed-container">
+                            <iframe 
+                                frameborder="0" 
+                                src="https://itch.io/embed-upload/15268338?color=333333" 
+                                allowfullscreen="" 
+                                width="1080" 
+                                height="800"
+                                class="third-game-embed-iframe"
+                                title="Aswang Chronicles: Smoke Break"
+                                loading="lazy"
+                                allow="autoplay; fullscreen; camera 'none'; microphone 'none'; geolocation 'none'; midi 'none'; accelerometer 'none'; gyroscope 'none'; xr-spatial-tracking 'none'; cross-origin-isolated 'none'"
+                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
+                                <a href="https://aswang-chronicles.itch.io/aswang-chronicles-smoke-break">Play Aswang Chronicles: Smoke Break on itch.io</a>
+                            </iframe>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="https://aswang-chronicles.itch.io/aswang-chronicles-smoke-break" target="_blank" class="btn-play-itch">
                                 <i class="fab fa-itch-io me-2"></i>
                                 Play on Itch.io
                             </a>

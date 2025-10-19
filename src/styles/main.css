@@ -1,5 +1,4 @@
 /* Aswang Chronicles - Main Styles */
-@import url('https://fonts.googleapis.com/css2?family=Kawit:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
 /* Reset and Base Styles */
 * {
@@ -159,6 +158,39 @@ body {
   .section {
     padding: 3rem 0;
   }
+}
+
+/* Lazy Loading Styles */
+img[data-src] {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+img.loading {
+  opacity: 0.5;
+  filter: blur(2px);
+}
+
+img.loaded {
+  opacity: 1;
+  filter: blur(0);
+}
+
+img.error {
+  opacity: 0.3;
+  background-color: var(--dark-green);
+  color: var(--light-gray);
+}
+
+/* Performance Optimizations */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 @media (max-width: 480px) {

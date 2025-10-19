@@ -125,7 +125,7 @@ export function HomePage() {
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="story-showcase animate-on-scroll">
                         <img 
-                            data-src="/Assets/WebsiteAssets/Fillers/Filler 2.PNG" 
+                            data-src="/Assets/WebsiteAssets/Fillers/Filler 2.webp" 
                             alt="Interactive Stories" 
                             class="img-fluid rounded shadow-lg lazy-image"
                             loading="lazy"
