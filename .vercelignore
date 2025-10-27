@@ -1,0 +1,25 @@
+# Vercel ignore file
+node_modules
+.git
+dist-preview
+.vscode
+*.log
+.npm
+.cache
+
+# Large asset directories
+Assets/WebsiteAssets/AswangChronicles-pc
+Assets/WebsiteAssets/AswangChronicles.app
+Assets/Hyper Narrative Assets
+
+# Development files
+scripts/performance-analysis.js
+scripts/preload-generator.js
+scripts/unused-assets.js
+performance-analysis.md
+performance-report.md
+scripts/post-build.cjs
+
+# Temporary files
+*.tmp
+*.temp
