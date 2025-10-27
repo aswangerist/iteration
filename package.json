@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/post-build.cjs",
+    "build:vercel": "vite build",
     "preview": "vite preview",
     "postinstall": "echo 'Dependencies installed successfully'"
   },

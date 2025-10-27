@@ -63,3 +63,7 @@ yarn.lock
 # Local development files
 .env.development.local
 .vercel
+
+# Game executables and large game files
+AswangChronicles-pc/
+AswangChronicles.app/
