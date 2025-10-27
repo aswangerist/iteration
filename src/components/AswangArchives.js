@@ -161,7 +161,7 @@ export function AswangArchives() {
                 
                 <div class="aswang-card animate-on-scroll"
                      data-creature="tiktik"
-                     data-image="/Assets/WebsiteAssets/Aswangcards/Tiktik .webp"
+                     data-image="/Assets/WebsiteAssets/Aswangcards/Tiktik.webp"
                      data-title="Tik-Tik / WakWak"
                      data-description="Similar to the manananggal, these bird-like creatures prey on humans. Their name comes from the sound their wings make as they fly. If the flapping sound is loud, it means they are far away, but if it becomes softer, they may be dangerously close—ready to strike. These creatures are said to harm their victims before feasting on their hearts.">
                     <img 

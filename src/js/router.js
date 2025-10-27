@@ -135,12 +135,15 @@ class Router {
       }
       
       // Re-initialize archives modal for new content
-      if (window.location.pathname === '/archives') {
-        import('./archivesModal.js').then(module => {
-          module.initArchivesModal();
-        }).catch(error => {
-          console.warn('Could not load archives modal:', error);
-        });
+      if (window.location.pathname === '/archives' || this.currentRoute === '/archives') {
+        // Add small delay to ensure DOM is fully rendered
+        setTimeout(() => {
+          import('./archivesModal.js').then(module => {
+            module.initArchivesModal();
+          }).catch(error => {
+            console.warn('Could not load archives modal:', error);
+          });
+        }, 100);
       }
       
       // Re-initialize lazy loading for new content

@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
-export default defineConfig({
-  base: '/iteration1/',
+export default defineConfig(({ command, mode }) => ({
+  base: command === 'build' ? '/iteration1/' : '/',
   root: '.',
   publicDir: 'public',
   build: {
@@ -130,4 +130,4 @@ export default defineConfig({
       }
     })
   ]
-})
+}))

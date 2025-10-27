@@ -7,10 +7,18 @@ dist-preview
 .npm
 .cache
 
-# Large asset directories
-Assets/WebsiteAssets/AswangChronicles-pc
-Assets/WebsiteAssets/AswangChronicles.app
-Assets/Hyper Narrative Assets
+# Large asset directories - Game files
+Assets/WebsiteAssets/AswangChronicles-pc/
+Assets/WebsiteAssets/AswangChronicles.app/
+Assets/Hyper\ Narrative\ Assets/
+
+# Additional large game assets
+Assets/WebsiteAssets/Copy\ of\ Project\ Development_.docx
+Assets/WebsiteAssets/Sheet.jpg
+Assets/WebsiteAssets/Font/
+Assets/WebsiteAssets/Aswangcards/
+Assets/WebsiteAssets/Background/
+Assets/WebsiteAssets/Fillers/
 
 # Development files
 scripts/performance-analysis.js
@@ -20,6 +28,20 @@ performance-analysis.md
 performance-report.md
 scripts/post-build.cjs
 
+# Documentation and analysis files
+*.md
+!README.md
+docs/
+reports/
+
 # Temporary files
 *.tmp
 *.temp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Large static assets not needed for deployment
+*.zip
+*.rar
+*.7z

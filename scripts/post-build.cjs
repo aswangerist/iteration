@@ -1,15 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 
-// Create the iteration1 directory in dist
 const distDir = path.join(__dirname, '..', 'dist');
 const iteration1Dir = path.join(distDir, 'iteration1');
 
+console.log('🔄 Starting build post-processing...');
+
+// Step 1: Create iteration1 directory
 if (!fs.existsSync(iteration1Dir)) {
-  fs.mkdirSync(iteration1Dir);
+  fs.mkdirSync(iteration1Dir, { recursive: true });
 }
 
-// Function to copy directory recursively
+// Step 2: Copy all files to iteration1 directory (not move)
 function copyDir(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
@@ -22,25 +24,21 @@ function copyDir(src, dest) {
     const destPath = path.join(dest, entry.name);
     
     if (entry.isDirectory()) {
-      if (entry.name !== 'iteration1') { // Skip iteration1 directory to avoid infinite loop
-        copyDir(srcPath, destPath);
-      }
+      copyDir(srcPath, destPath);
     } else {
-      if (entry.name !== 'index.html' || dest === iteration1Dir) { // Copy index.html only to iteration1 dir
-        fs.copyFileSync(srcPath, destPath);
-      }
+      fs.copyFileSync(srcPath, destPath);
     }
   }
 }
 
-// Copy all files except index.html to iteration1 subdirectory
+// Copy all files to iteration1 subdirectory
 const entries = fs.readdirSync(distDir, { withFileTypes: true });
 
 for (let entry of entries) {
   const srcPath = path.join(distDir, entry.name);
   const destPath = path.join(iteration1Dir, entry.name);
   
-  if (entry.name !== 'iteration1' && entry.name !== 'index.html') {
+  if (entry.name !== 'iteration1') {
     if (entry.isDirectory()) {
       copyDir(srcPath, destPath);
     } else {
@@ -49,11 +47,36 @@ for (let entry of entries) {
   }
 }
 
-// Copy index.html to iteration1 directory
-const indexPath = path.join(distDir, 'index.html');
+// Step 3: Fix paths in iteration1 files for direct deployment
 const iteration1IndexPath = path.join(iteration1Dir, 'index.html');
-if (fs.existsSync(indexPath)) {
-  fs.copyFileSync(indexPath, iteration1IndexPath);
+if (fs.existsSync(iteration1IndexPath)) {
+  let indexContent = fs.readFileSync(iteration1IndexPath, 'utf8');
+  
+  // Replace /iteration1/ paths with relative paths for direct deployment
+  indexContent = indexContent.replace(/\/iteration1\//g, './');
+  
+  fs.writeFileSync(iteration1IndexPath, indexContent);
+  console.log('   - Fixed asset paths in iteration1/index.html for direct deployment');
+}
+
+// Step 4: Fix JavaScript files for direct deployment
+const assetsDir = path.join(iteration1Dir, 'assets');
+if (fs.existsSync(assetsDir)) {
+  const jsFiles = fs.readdirSync(assetsDir).filter(file => file.endsWith('.js'));
+  
+  for (const jsFile of jsFiles) {
+    const jsPath = path.join(assetsDir, jsFile);
+    let jsContent = fs.readFileSync(jsPath, 'utf8');
+    
+    // Replace /iteration1/ paths with relative paths
+    jsContent = jsContent.replace(/\/iteration1\//g, './');
+    // Replace /Assets/ paths with relative paths
+    jsContent = jsContent.replace(/\/Assets\//g, './Assets/');
+    
+    fs.writeFileSync(jsPath, jsContent);
+  }
+  
+  console.log('   - Fixed asset paths in JavaScript files for direct deployment');
 }
 
 // Create redirect index.html at root
@@ -135,6 +158,7 @@ const redirectHtml = `<!DOCTYPE html>
 fs.writeFileSync(path.join(distDir, 'index.html'), redirectHtml);
 
 console.log('✅ Build post-processing complete:');
-console.log('   - Application files copied to /iteration1/ subdirectory');
-console.log('   - Redirect page created at root');
-console.log('   - Ready for deployment with subdirectory configuration');
+console.log('   - All application files moved to /iteration1/ subdirectory');
+console.log('   - Root redirect page created');
+console.log('   - Deployment optimized - no duplicate files');
+console.log('   - Ready for deployment with clean subdirectory structure');
