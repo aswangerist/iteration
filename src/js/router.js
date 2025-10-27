@@ -15,6 +15,12 @@ class Router {
   handleRoute() {
     let path = window.location.pathname;
     
+    // Remove base path /iteration1 if present
+    const basePath = '/iteration1';
+    if (path.startsWith(basePath)) {
+      path = path.substring(basePath.length) || '/';
+    }
+    
     // Handle clean URLs - map them to hash-based routing for SPA
     const routeMap = {
       '/': '/',
@@ -34,8 +40,9 @@ class Router {
       this.loadComponent(route);
       
       // Update browser URL without page reload
-      if (window.location.pathname !== path) {
-        window.history.pushState(null, '', path);
+      const fullPath = path === '/' ? '/iteration1/' : `/iteration1${path}`;
+      if (window.location.pathname !== fullPath) {
+        window.history.pushState(null, '', fullPath);
       }
     }
   }
@@ -203,7 +210,8 @@ class Router {
   }
 
   navigateTo(path) {
-    window.history.pushState(null, '', path);
+    const fullPath = path === '/' ? '/iteration1/' : `/iteration1${path}`;
+    window.history.pushState(null, '', fullPath);
     this.handleRoute();
   }
 }

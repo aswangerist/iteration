@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/iteration1/',
   root: '.',
   publicDir: 'public',
   build: {
@@ -109,8 +110,8 @@ export default defineConfig({
         theme_color: '#BD0300',
         background_color: '#001915',
         display: 'standalone',
-        scope: '/',
-        start_url: '/',
+        scope: '/iteration1/',
+        start_url: '/iteration1/',
         orientation: 'portrait-primary',
         icons: [
           {
