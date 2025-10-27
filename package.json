@@ -5,10 +5,15 @@
   "type": "module",
   "description": "A fictional web graphic hypernarrative designed to reintroduce Tagalog folklore to the digital generation",
   "homepage": "https://aswangchronicles.com/iteration1",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/post-build.cjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "echo 'Dependencies installed successfully'"
   },
   "devDependencies": {
     "vite": "^7.1.10",
