@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig(({ command, mode }) => ({
-  base: command === 'build' ? '/iteration1/' : '/',
+  base: process.env.VERCEL ? '/' : command === 'build' ? '/iteration1/' : '/',
   root: '.',
   publicDir: 'public',
   build: {

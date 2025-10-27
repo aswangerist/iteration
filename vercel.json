@@ -9,12 +9,13 @@
     "env": {
       "NPM_CONFIG_FUND": "false",
       "NPM_CONFIG_AUDIT": "false",
-      "NODE_ENV": "production"
+      "NODE_ENV": "production",
+      "VERCEL": "true"
     }
   },
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!assets|Assets|manifest\\.webmanifest|sw\\.js|workbox-.*\\.js).*)",
       "destination": "/index.html"
     }
   ],
