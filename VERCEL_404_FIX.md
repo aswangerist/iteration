@@ -48,11 +48,11 @@ Added security headers in `vercel.json` for:
 
 ### After Deployment:
 1. **Test Direct URL Access**:
-   - `https://your-domain.vercel.app/` ✓
-   - `https://your-domain.vercel.app/game` ✓
-   - `https://your-domain.vercel.app/archives` ✓
-   - `https://your-domain.vercel.app/contact` ✓
-   - `https://your-domain.vercel.app/admin` ✓
+   - `https://aswangchronicles.com/` ✓
+   - `https://aswangchronicles.com/game` ✓
+   - `https://aswangchronicles.com/archives` ✓
+   - `https://aswangchronicles.com/contact` ✓
+   - `https://aswangchronicles.com/admin` ✓
 
 2. **Test Navigation**:
    - Click navigation links ✓
