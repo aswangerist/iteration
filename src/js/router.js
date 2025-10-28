@@ -126,7 +126,7 @@ class Router {
       }
       
       // Re-initialize game controls for new content
-      if (window.location.pathname === '/game') {
+      if (this.currentRoute === '/game') {
         import('./gameControls.js').then(module => {
           module.initGameControls();
         }).catch(error => {
@@ -135,7 +135,7 @@ class Router {
       }
       
       // Re-initialize archives modal for new content
-      if (window.location.pathname === '/archives' || this.currentRoute === '/archives') {
+      if (this.currentRoute === '/archives') {
         // Add small delay to ensure DOM is fully rendered
         setTimeout(() => {
           import('./archivesModal.js').then(module => {
@@ -156,28 +156,37 @@ class Router {
       });
       
       // Initialize comment system if on game page
-      if (window.location.pathname === '/game' && document.getElementById('commentForm')) {
-        // Clean up previous comment system if it exists
-        if (window.currentCommentSystem) {
-          window.currentCommentSystem.destroy()
-        }
-        
-        import('./comments.js').then(module => {
-          window.currentCommentSystem = new module.CommentSystem();
-        }).catch(error => {
-          console.warn('Could not load comment system:', error);
-        });
+      if (this.currentRoute === '/game') {
+        // Add delay to ensure DOM is fully rendered
+        setTimeout(() => {
+          const commentForm = document.getElementById('commentForm');
+          if (commentForm) {
+            // Clean up previous comment system if it exists
+            if (window.currentCommentSystem) {
+              window.currentCommentSystem.destroy()
+            }
+            
+            import('./comments.js').then(module => {
+              window.currentCommentSystem = new module.CommentSystem();
+              console.log('✅ Comment system initialized');
+            }).catch(error => {
+              console.error('❌ Could not load comment system:', error);
+            });
 
-        // Initialize reporting system
-        import('./reportingSystem.js').then(module => {
-          // Reporting system auto-initializes
-        }).catch(error => {
-          console.warn('Could not load reporting system:', error);
-        });
+            // Initialize reporting system
+            import('./reportingSystem.js').then(module => {
+              console.log('✅ Reporting system initialized');
+            }).catch(error => {
+              console.error('❌ Could not load reporting system:', error);
+            });
+          } else {
+            console.warn('⚠️ Comment form not found in DOM');
+          }
+        }, 150);
       }
 
       // Initialize admin system if on admin page
-      if (window.location.pathname === '/admin') {
+      if (this.currentRoute === '/admin') {
         // Clean up previous admin system if it exists
         if (window.currentAdminSystem) {
           window.currentAdminSystem.destroy()
@@ -191,12 +200,21 @@ class Router {
       }
       
       // Initialize share system if on game page
-      if (window.location.pathname === '/game' && document.querySelector('.share-buttons')) {
-        import('./share.js').then(module => {
-          new module.ShareSystem();
-        }).catch(error => {
-          console.warn('Could not load share system:', error);
-        });
+      if (this.currentRoute === '/game') {
+        // Add delay to ensure DOM is fully rendered
+        setTimeout(() => {
+          const shareButtons = document.querySelector('.share-buttons');
+          if (shareButtons) {
+            import('./share.js').then(module => {
+              new module.ShareSystem();
+              console.log('✅ Share system initialized');
+            }).catch(error => {
+              console.error('❌ Could not load share system:', error);
+            });
+          } else {
+            console.warn('⚠️ Share buttons not found in DOM');
+          }
+        }, 150);
       }
       
       // Notify mobile navigation of route change
