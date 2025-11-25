@@ -721,100 +721,6 @@
   box-shadow: 0 6px 20px rgba(6, 91, 81, 0.4);
 }
 
-/* Background Toggle Styles */
-.background-toggle-container {
-  display: inline-block;
-  background: rgba(0, 0, 0, 0.1);
-  padding: 15px 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: var(--transition-medium);
-}
-
-.background-toggle-label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin: 0;
-  gap: 15px;
-}
-
-.background-toggle-checkbox {
-  display: none;
-}
-
-.background-toggle-slider {
-  position: relative;
-  width: 50px;
-  height: 26px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 13px;
-  transition: var(--transition-medium);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.background-toggle-slider::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 18px;
-  height: 18px;
-  background: white;
-  border-radius: 50%;
-  transition: var(--transition-medium);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.background-toggle-checkbox:checked + .background-toggle-slider {
-  background: var(--red);
-  border-color: var(--red);
-}
-
-.background-toggle-checkbox:checked + .background-toggle-slider::before {
-  transform: translateX(24px);
-  background: white;
-}
-
-.background-toggle-text {
-  color: var(--light-gray);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: var(--transition-medium);
-}
-
-.background-toggle-checkbox:checked ~ .background-toggle-text {
-  color: white;
-}
-
-.background-toggle-container:hover {
-  background: rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Dark mode styles */
-.dark-gaming-mode {
-  background: #0a0a0a !important;
-  transition: background-color 0.5s ease;
-}
-
-.dark-gaming-mode .navbar {
-  background: rgba(0, 0, 0, 0.95) !important;
-  backdrop-filter: blur(10px);
-}
-
-.dark-gaming-mode .game-section {
-  background: #0a0a0a !important;
-}
-
-.dark-gaming-mode .share-section {
-  background: #111 !important;
-}
-
-.dark-gaming-mode .footer {
-  background: #000 !important;
-}
-
 /* Fullscreen Game Styles */
 .game-fullscreen-mode {
   position: fixed !important;
@@ -1516,36 +1422,6 @@
   
   .game-fullscreen-mode {
     border-radius: 0 !important;
-  }
-  
-  .background-toggle-container {
-    padding: 12px 16px;
-    margin-top: 1rem;
-  }
-  
-  .background-toggle-label {
-    gap: 12px;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .background-toggle-text {
-    font-size: 0.85rem;
-    order: -1;
-  }
-  
-  .background-toggle-slider {
-    width: 45px;
-    height: 24px;
-  }
-  
-  .background-toggle-slider::before {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .background-toggle-checkbox:checked + .background-toggle-slider::before {
-    transform: translateX(21px);
   }
   
   .game-hero-title {

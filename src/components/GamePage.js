@@ -65,20 +65,6 @@ export function GamePage() {
                                 Play on Itch.io
                             </a>
                         </div>
-                        
-                        <!-- Background Toggle -->
-                        <div class="text-center mt-4">
-                            <div class="background-toggle-container">
-                                <label class="background-toggle-label">
-                                    <input type="checkbox" id="backgroundToggle" class="background-toggle-checkbox">
-                                    <span class="background-toggle-slider"></span>
-                                    <span class="background-toggle-text">
-                                        <i class="fas fa-moon me-2"></i>
-                                        Dark Mode for Better Gaming
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -167,8 +167,12 @@ function initGameEmbed() {
 
 // Game Play Tracking
 function initGameTracking() {
+  // Make fullscreen function globally available
+  window.enterGameFullscreen = enterGameFullscreen;
+  window.exitGameFullscreen = exitGameFullscreen;
+
   document.addEventListener('click', (e) => {
-    // Track fullscreen game play button
+    // Track and handle fullscreen game play button
     if (e.target.closest('.btn-play-fullscreen')) {
       analytics.trackGamePlay({
         gameName: 'Aswang Chronicles: Spoon Test',
@@ -198,6 +202,106 @@ function initGameTracking() {
       console.log('📊 Game iframe loaded:', gameName);
     });
   });
+
+  // Setup fullscreen change listeners
+  document.addEventListener('fullscreenchange', handleFullscreenChange);
+  document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+  document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+  document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+}
+
+// Fullscreen functionality
+function enterGameFullscreen() {
+  const gameContainer = document.querySelector('.game-embed-container');
+  const iframe = document.querySelector('.game-embed-iframe');
+  
+  if (!gameContainer || !iframe) {
+    console.warn('Game container or iframe not found');
+    showNotification('Could not enter fullscreen mode', 'error');
+    return;
+  }
+  
+  // Request fullscreen
+  const element = gameContainer;
+  
+  if (element.requestFullscreen) {
+    element.requestFullscreen().catch(err => {
+      console.error('Fullscreen request failed:', err);
+      openGameInNewWindow(iframe.src);
+    });
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else {
+    // Fallback: open in new window
+    openGameInNewWindow(iframe.src);
+  }
+}
+
+function exitGameFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+function handleFullscreenChange() {
+  const isFullscreen = !!(document.fullscreenElement || 
+                         document.webkitFullscreenElement || 
+                         document.mozFullScreenElement || 
+                         document.msFullscreenElement);
+  
+  const gameContainer = document.querySelector('.game-embed-container');
+  
+  if (gameContainer) {
+    if (isFullscreen) {
+      gameContainer.classList.add('game-fullscreen-mode');
+      showNotification('Press ESC to exit fullscreen', 'info');
+    } else {
+      gameContainer.classList.remove('game-fullscreen-mode');
+    }
+  }
+}
+
+function openGameInNewWindow(gameUrl) {
+  window.open(gameUrl, '_blank', 'width=1080,height=800,scrollbars=no,resizable=yes');
+  showNotification('Opened game in new window', 'info');
+}
+
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `game-notification ${type}`;
+  notification.innerHTML = `
+    <i class="fas fa-${type === 'error' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
+    ${message}
+  `;
+  notification.style.cssText = `
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: ${type === 'error' ? '#dc3545' : '#0d6efd'};
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    animation: slideIn 0.3s ease-out;
+  `;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease-out';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
 }
 
 // Back to Top functionality

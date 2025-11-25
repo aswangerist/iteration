@@ -193,6 +193,33 @@ img.error {
   perspective: 1000px;
 }
 
+/* Notification Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+.game-notification {
+  animation: slideIn 0.3s ease-out;
+}
+
 @media (max-width: 480px) {
   .title-main {
     font-size: 2.2rem;
@@ -200,5 +227,11 @@ img.error {
   
   .subtitle {
     font-size: 1rem;
+  }
+  
+  .game-notification {
+    right: 10px !important;
+    left: 10px !important;
+    max-width: calc(100% - 20px);
   }
 }
