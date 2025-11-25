@@ -1,66 +1,40 @@
 // GamePage component for Aswang Chronicles
+import { Navigation } from './Navigation.js';
 import { Footer } from './Footer.js';
+import { GAMES } from '../data/gameData.js';
 
 export function GamePage() {
-  return `
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg">
+  const gameEmbeds = GAMES.map((game, index) => `
+    <section class="game-section py-5 ${index % 2 === 1 ? 'bg-dark' : ''}">
         <div class="container">
-            <a class="navbar-brand" href="#" data-route="/">
-                <img src="/Assets/WebsiteAssets/Logos/Horizontal.png" alt="Aswang Chronicles Logo" class="logo-icon">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <i class="fas fa-bars" style="color: var(--dark-green); font-size: 1.5rem;"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-route="/">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" data-route="/game">GAME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-route="/archives">ASWANG ARCHIVES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-route="/contact">CONTACT US</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Game Embed Section -->
-    <section class="game-section py-5">
-        <div class="container">
-            <div class="row">
+            <div class="row ${index > 0 ? 'mt-5' : ''}">
                 <div class="col-12">
                     <div class="game-embed-section animate-on-scroll">
                         <div class="text-center mb-4">
-                            <h1 class="game-embed-title">Aswang Chronicles: Spoon Test</h1>
-                            <p class="game-embed-subtitle">Experience the prototype of our interactive Filipino folklore adventure</p>
+                            <h${index === 0 ? '1' : '2'} class="game-embed-title">${game.title}</h${index === 0 ? '1' : '2'}>
+                            <p class="game-embed-subtitle">${game.subtitle}</p>
                         </div>
-                        <div class="game-embed-container">
+                        <div class="${game.containerClass}">
                             <iframe 
                                 frameborder="0" 
-                                src="https://itch.io/embed-upload/14090605?color=1e1e1e" 
+                                src="${game.iframeSrc}" 
+                                allowfullscreen="" 
                                 width="1080" 
                                 height="800"
-                                class="game-embed-iframe"
-                                title="Aswang Chronicles: Spoon Test"
+                                class="${game.iframeClass}"
+                                title="${game.title}"
                                 loading="lazy"
                                 allow="autoplay; fullscreen; camera 'none'; microphone 'none'; geolocation 'none'; midi 'none'; accelerometer 'none'; gyroscope 'none'; xr-spatial-tracking 'none'; cross-origin-isolated 'none'"
                                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
-                                <a href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test">Play Aswang Chronicles: Spoon Test on itch.io</a>
+                                <a href="${game.itchUrl}">Play ${game.title} on itch.io</a>
                             </iframe>
                         </div>
                         <div class="text-center mt-4">
-                            <button onclick="enterGameFullscreen()" class="btn-play-fullscreen">
+                            <button onclick="enterGameFullscreen('${game.gameKey}')" class="btn-play-fullscreen">
                                 <i class="fas fa-expand me-2"></i>
                                 Play in Full Screen
                             </button>
-                            <a href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test" target="_blank" class="btn-play-itch ms-3">
+                            <a href="${game.itchUrl}" target="_blank" class="btn-play-itch ms-3">
                                 <i class="fab fa-itch-io me-2"></i>
                                 Play on Itch.io
                             </a>
@@ -70,76 +44,12 @@ export function GamePage() {
             </div>
         </div>
     </section>
+  `).join('');
 
-    <!-- Second Game Embed Section -->
-    <section class="game-section py-5 bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="game-embed-section animate-on-scroll">
-                        <div class="text-center mb-4">
-                            <h2 class="game-embed-title">Aswang Chronicles: Left In the Shadows</h2>
-                            <p class="game-embed-subtitle">Discover another chapter in our Filipino folklore collection</p>
-                        </div>
-                        <div class="second-game-embed-container">
-                            <iframe 
-                                frameborder="0" 
-                                src="https://itch.io/embed-upload/15242150?color=333333" 
-                                allowfullscreen="" 
-                                width="1080" 
-                                height="800"
-                                class="second-game-embed-iframe"
-                                title="Aswang Chronicles: Left In the Shadows"
-                                loading="lazy"
-                                allow="autoplay; fullscreen; camera 'none'; microphone 'none'; geolocation 'none'; midi 'none'; accelerometer 'none'; gyroscope 'none'; xr-spatial-tracking 'none'; cross-origin-isolated 'none'"
-                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
-                                <a href="https://aswang-chronicles.itch.io/aswang-chronicles-left-in-the-shadows">Play Aswang Chronicles: Left In the Shadows on itch.io</a>
-                            </iframe>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="https://aswang-chronicles.itch.io/aswang-chronicles-left-in-the-shadows" target="_blank" class="btn-play-itch">
-                                <i class="fab fa-itch-io me-2"></i>
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  return `
+    ${Navigation('/game')}
 
-            <!-- Third Game -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="game-embed-section animate-on-scroll">
-                        <div class="text-center mb-4">
-                            <h2 class="game-embed-title">Aswang Chronicles: Smoke Break</h2>
-                            <p class="game-embed-subtitle">Another thrilling chapter in our Filipino folklore series</p>
-                        </div>
-                        <div class="third-game-embed-container">
-                            <iframe 
-                                frameborder="0" 
-                                src="https://itch.io/embed-upload/15268338?color=333333" 
-                                allowfullscreen="" 
-                                width="1080" 
-                                height="800"
-                                class="third-game-embed-iframe"
-                                title="Aswang Chronicles: Smoke Break"
-                                loading="lazy"
-                                allow="autoplay; fullscreen; camera 'none'; microphone 'none'; geolocation 'none'; midi 'none'; accelerometer 'none'; gyroscope 'none'; xr-spatial-tracking 'none'; cross-origin-isolated 'none'"
-                                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation">
-                                <a href="https://aswang-chronicles.itch.io/aswang-chronicles-smoke-break">Play Aswang Chronicles: Smoke Break on itch.io</a>
-                            </iframe>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="https://aswang-chronicles.itch.io/aswang-chronicles-smoke-break" target="_blank" class="btn-play-itch">
-                                <i class="fab fa-itch-io me-2"></i>
-                                Play on Itch.io
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    ${gameEmbeds}
 
     <!-- Share Section -->
     <section class="share-section py-4">

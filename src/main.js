@@ -14,6 +14,7 @@ import { initLazyLoading, PerformanceMonitor } from './js/lazyLoader.js'
 import { initMobileNavigation } from './js/mobileNavigation.js'
 import { CommentSystem } from './js/comments.js'
 import { analytics } from './js/analytics.js'
+import { GAMES } from './data/gameData.js'
 // Import performance utilities
 import { initLazyLoading as initImageLazyLoading } from './utils/lazyLoading.js'
 
@@ -172,11 +173,13 @@ function initGameTracking() {
   window.exitGameFullscreen = exitGameFullscreen;
 
   document.addEventListener('click', (e) => {
-    // Track and handle fullscreen game play button
-    if (e.target.closest('.btn-play-fullscreen')) {
+    // Track fullscreen button clicks
+    const fullscreenBtn = e.target.closest('.btn-play-fullscreen');
+    if (fullscreenBtn) {
+      const gameName = fullscreenBtn.closest('.game-embed-section')?.querySelector('.game-embed-title')?.textContent || 'Unknown Game';
       analytics.trackGamePlay({
-        gameName: 'Aswang Chronicles: Spoon Test',
-        gameUrl: 'https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test'
+        gameName: gameName.trim(),
+        gameUrl: window.location.href
       });
       analytics.trackButtonClick('Play Fullscreen', 'Game Page');
     }
@@ -194,13 +197,13 @@ function initGameTracking() {
   });
 
   // Track iframe interactions (when user clicks to start playing)
-  const gameIframes = document.querySelectorAll('.game-embed-iframe, .second-game-embed-iframe, .third-game-embed-iframe');
-  gameIframes.forEach(iframe => {
-    iframe.addEventListener('load', () => {
-      const gameName = iframe.closest('.game-embed-section')?.querySelector('.game-embed-title')?.textContent || 'Unknown Game';
-      // Track when iframe loads (user is about to play)
-      console.log('📊 Game iframe loaded:', gameName);
-    });
+  GAMES.forEach(game => {
+    const iframe = document.querySelector(`.${game.iframeClass}`);
+    if (iframe) {
+      iframe.addEventListener('load', () => {
+        console.log('📊 Game iframe loaded:', game.title);
+      });
+    }
   });
 
   // Setup fullscreen change listeners
@@ -211,9 +214,17 @@ function initGameTracking() {
 }
 
 // Fullscreen functionality
-function enterGameFullscreen() {
-  const gameContainer = document.querySelector('.game-embed-container');
-  const iframe = document.querySelector('.game-embed-iframe');
+function enterGameFullscreen(gameKey = 'first') {
+  const game = GAMES.find(g => g.gameKey === gameKey);
+  
+  if (!game) {
+    console.warn('Game not found:', gameKey);
+    showNotification('Game not found', 'error');
+    return;
+  }
+  
+  const gameContainer = document.querySelector(`.${game.containerClass}`);
+  const iframe = document.querySelector(`.${game.iframeClass}`);
   
   if (!gameContainer || !iframe) {
     console.warn('Game container or iframe not found');
@@ -259,16 +270,18 @@ function handleFullscreenChange() {
                          document.mozFullScreenElement || 
                          document.msFullscreenElement);
   
-  const gameContainer = document.querySelector('.game-embed-container');
-  
-  if (gameContainer) {
-    if (isFullscreen) {
-      gameContainer.classList.add('game-fullscreen-mode');
-      showNotification('Press ESC to exit fullscreen', 'info');
-    } else {
-      gameContainer.classList.remove('game-fullscreen-mode');
+  // Check all game containers using centralized data
+  GAMES.forEach(game => {
+    const gameContainer = document.querySelector(`.${game.containerClass}`);
+    if (gameContainer) {
+      if (isFullscreen) {
+        gameContainer.classList.add('game-fullscreen-mode');
+        showNotification('Press ESC to exit fullscreen', 'info');
+      } else {
+        gameContainer.classList.remove('game-fullscreen-mode');
+      }
     }
-  }
+  });
 }
 
 function openGameInNewWindow(gameUrl) {
