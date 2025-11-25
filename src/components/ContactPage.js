@@ -69,13 +69,13 @@ export function ContactPage() {
                                 <h5>Follow Our Journey</h5>
                                 <p>Stay updated with new stories and folklore discoveries</p>
                                 <div class="social-links">
-                                    <a href="#" class="social-link me-3">
+                                    <a href="https://www.facebook.com/aswangchronicles1" class="social-link me-3">
                                         <i class="fab fa-facebook fa-2x"></i>
                                     </a>
-                                    <a href="#" class="social-link me-3">
+                                    <a href="https://x.com/aswang389519" class="social-link me-3">
                                         <i class="fab fa-twitter fa-2x"></i>
                                     </a>
-                                    <a href="#" class="social-link">
+                                    <a href="https://www.instagram.com/aswangchronicles/" class="social-link">
                                         <i class="fab fa-instagram fa-2x"></i>
                                     </a>
                                 </div>
