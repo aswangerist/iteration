@@ -13,6 +13,7 @@ import { initRouter } from './js/router.js'
 import { initLazyLoading, PerformanceMonitor } from './js/lazyLoader.js'
 import { initMobileNavigation } from './js/mobileNavigation.js'
 import { CommentSystem } from './js/comments.js'
+import { analytics } from './js/analytics.js'
 // Import performance utilities
 import { initLazyLoading as initImageLazyLoading } from './utils/lazyLoading.js'
 
@@ -107,6 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize game embed functionality
   initGameEmbed()
   
+  // Initialize game play tracking
+  initGameTracking()
+  
   // Developer console information
   console.log('🧛‍♀️ Aswang Chronicles initialized with Vite + PWA + Lazy Loading + Mobile Navigation + Back to Top + Game Embed!')
   
@@ -159,6 +163,41 @@ function initGameEmbed() {
       })
     }
   })
+}
+
+// Game Play Tracking
+function initGameTracking() {
+  document.addEventListener('click', (e) => {
+    // Track fullscreen game play button
+    if (e.target.closest('.btn-play-fullscreen')) {
+      analytics.trackGamePlay({
+        gameName: 'Aswang Chronicles: Spoon Test',
+        gameUrl: 'https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test'
+      });
+      analytics.trackButtonClick('Play Fullscreen', 'Game Page');
+    }
+
+    // Track itch.io game links
+    const itchLink = e.target.closest('.btn-play-itch');
+    if (itchLink) {
+      const gameName = itchLink.closest('.game-embed-section')?.querySelector('.game-embed-title')?.textContent || 'Unknown Game';
+      analytics.trackGamePlay({
+        gameName: gameName.trim(),
+        gameUrl: itchLink.href
+      });
+      analytics.trackButtonClick('Play on Itch.io', 'Game Page');
+    }
+  });
+
+  // Track iframe interactions (when user clicks to start playing)
+  const gameIframes = document.querySelectorAll('.game-embed-iframe, .second-game-embed-iframe, .third-game-embed-iframe');
+  gameIframes.forEach(iframe => {
+    iframe.addEventListener('load', () => {
+      const gameName = iframe.closest('.game-embed-section')?.querySelector('.game-embed-title')?.textContent || 'Unknown Game';
+      // Track when iframe loads (user is about to play)
+      console.log('📊 Game iframe loaded:', gameName);
+    });
+  });
 }
 
 // Back to Top functionality

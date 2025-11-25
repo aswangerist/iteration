@@ -177,6 +177,9 @@ export class AdminSystem {
         this.loadPendingComments()
       } else if (targetId === 'reports-tab') {
         this.loadUserReports()
+      } else if (targetId === 'analytics-tab') {
+        console.log('🔄 Loading analytics dashboard')
+        this.loadAnalyticsDashboard()
       }
     })
   }
@@ -916,6 +919,52 @@ export class AdminSystem {
     const div = document.createElement('div')
     div.textContent = text
     return div.innerHTML
+  }
+
+  async loadAnalyticsDashboard() {
+    const analyticsContent = document.getElementById('analyticsContent')
+    if (!analyticsContent) return
+
+    try {
+      console.log('📊 Loading analytics dashboard...')
+      
+      // Show loading state
+      analyticsContent.innerHTML = `
+        <div class="text-center text-muted py-4">
+          <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+          <p>Loading analytics data...</p>
+        </div>
+      `
+
+      // Import analytics components
+      const { AnalyticsDashboard, initializeCharts } = await import('../components/AnalyticsDashboard.js')
+      const { analytics } = await import('./analytics.js')
+
+      // Get analytics data
+      const gameStats = await analytics.getGamePlayStats()
+      const choiceStats = await analytics.getStoryChoiceStats()
+
+      console.log('📊 Game stats:', gameStats)
+      console.log('📊 Choice stats:', choiceStats)
+
+      // Render dashboard
+      analyticsContent.innerHTML = await AnalyticsDashboard()
+
+      // Initialize charts after DOM is updated
+      setTimeout(() => {
+        initializeCharts(gameStats, choiceStats)
+        console.log('📊 Analytics dashboard loaded successfully')
+      }, 100)
+
+    } catch (error) {
+      console.error('❌ Error loading analytics dashboard:', error)
+      analyticsContent.innerHTML = `
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          Error loading analytics dashboard: ${error.message}
+        </div>
+      `
+    }
   }
 
   // Cleanup method

@@ -193,6 +193,17 @@ export function AdminPage() {
                                 Settings
                             </button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link bg-dark text-light border-secondary" 
+                                    id="analytics-tab" 
+                                    data-bs-toggle="tab" 
+                                    data-bs-target="#analytics" 
+                                    type="button" 
+                                    role="tab">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                Analytics
+                            </button>
+                        </li>
                     </ul>
 
                     <div class="tab-content" id="adminTabContent">
@@ -329,6 +340,16 @@ export function AdminPage() {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analytics Tab -->
+                        <div class="tab-pane fade" id="analytics" role="tabpanel">
+                            <div id="analyticsContent">
+                                <div class="text-center text-muted py-4">
+                                    <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+                                    <p>Loading analytics data...</p>
                                 </div>
                             </div>
                         </div>

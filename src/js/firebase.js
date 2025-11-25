@@ -51,7 +51,8 @@ export { db, app }
 // Collection names
 export const COLLECTIONS = {
   COMMENTS: 'aswang-comments',
-  ANALYTICS: 'aswang-analytics'
+  ANALYTICS: 'aswang-analytics',
+  STORY_CHOICES: 'aswang-story-choices'
 }
 
 // Firestore error handling
