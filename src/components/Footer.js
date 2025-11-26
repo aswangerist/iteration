@@ -66,13 +66,6 @@ export function Footer() {
                     </p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 text-center mt-2">
-                    <small style="opacity: 0.5; font-size: 0.7rem;">
-                        Developed by <a href="https://titosenpai.com" target="_blank" style="color: inherit; text-decoration: none;">TitoSenpai</a>
-                    </small>
-                </div>
-            </div>
         </div>
     </footer>
 
