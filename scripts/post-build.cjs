@@ -2,16 +2,16 @@ const fs = require('fs');
 const path = require('path');
 
 const distDir = path.join(__dirname, '..', 'dist');
-const iteration1Dir = path.join(distDir, 'iteration1');
+const iteration2Dir = path.join(distDir, 'iteration2');
 
 console.log('🔄 Starting build post-processing...');
 
-// Step 1: Create iteration1 directory
-if (!fs.existsSync(iteration1Dir)) {
-  fs.mkdirSync(iteration1Dir, { recursive: true });
+// Step 1: Create iteration2 directory
+if (!fs.existsSync(iteration2Dir)) {
+  fs.mkdirSync(iteration2Dir, { recursive: true });
 }
 
-// Step 2: Copy all files to iteration1 directory (not move)
+// Step 2: Copy all files to iteration2 directory (not move)
 function copyDir(src, dest) {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
@@ -31,14 +31,14 @@ function copyDir(src, dest) {
   }
 }
 
-// Copy all files to iteration1 subdirectory
+// Copy all files to iteration2 subdirectory
 const entries = fs.readdirSync(distDir, { withFileTypes: true });
 
 for (let entry of entries) {
   const srcPath = path.join(distDir, entry.name);
-  const destPath = path.join(iteration1Dir, entry.name);
+  const destPath = path.join(iteration2Dir, entry.name);
   
-  if (entry.name !== 'iteration1') {
+  if (entry.name !== 'iteration2') {
     if (entry.isDirectory()) {
       copyDir(srcPath, destPath);
     } else {
@@ -47,20 +47,20 @@ for (let entry of entries) {
   }
 }
 
-// Step 3: Fix paths in iteration1 files for direct deployment
-const iteration1IndexPath = path.join(iteration1Dir, 'index.html');
-if (fs.existsSync(iteration1IndexPath)) {
-  let indexContent = fs.readFileSync(iteration1IndexPath, 'utf8');
+// Step 3: Fix paths in iteration2 files for direct deployment
+const iteration2IndexPath = path.join(iteration2Dir, 'index.html');
+if (fs.existsSync(iteration2IndexPath)) {
+  let indexContent = fs.readFileSync(iteration2IndexPath, 'utf8');
   
-  // Replace /iteration1/ paths with relative paths for direct deployment
-  indexContent = indexContent.replace(/\/iteration1\//g, './');
+  // Replace /iteration2/ paths with relative paths for direct deployment
+  indexContent = indexContent.replace(/\/iteration2\//g, './');
   
-  fs.writeFileSync(iteration1IndexPath, indexContent);
-  console.log('   - Fixed asset paths in iteration1/index.html for direct deployment');
+  fs.writeFileSync(iteration2IndexPath, indexContent);
+  console.log('   - Fixed asset paths in iteration2/index.html for direct deployment');
 }
 
 // Step 4: Fix JavaScript files for direct deployment
-const assetsDir = path.join(iteration1Dir, 'assets');
+const assetsDir = path.join(iteration2Dir, 'assets');
 if (fs.existsSync(assetsDir)) {
   const jsFiles = fs.readdirSync(assetsDir).filter(file => file.endsWith('.js'));
   
@@ -68,8 +68,8 @@ if (fs.existsSync(assetsDir)) {
     const jsPath = path.join(assetsDir, jsFile);
     let jsContent = fs.readFileSync(jsPath, 'utf8');
     
-    // Replace /iteration1/ paths with relative paths
-    jsContent = jsContent.replace(/\/iteration1\//g, './');
+    // Replace /iteration2/ paths with relative paths
+    jsContent = jsContent.replace(/\/iteration2\//g, './');
     // Replace /Assets/ paths with relative paths
     jsContent = jsContent.replace(/\/Assets\//g, './Assets/');
     
@@ -86,7 +86,7 @@ const redirectHtml = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aswang Chronicles - Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=/iteration1/">
+    <meta http-equiv="refresh" content="0; url=/iteration2/">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -143,12 +143,12 @@ const redirectHtml = `<!DOCTYPE html>
         <h1>Aswang Chronicles</h1>
         <div class="spinner"></div>
         <p>Redirecting you to the latest iteration...</p>
-        <p>If you are not redirected automatically, <a href="/iteration1/">click here</a>.</p>
+        <p>If you are not redirected automatically, <a href="/iteration2/">click here</a>.</p>
     </div>
     <script>
         // Fallback JavaScript redirect
         setTimeout(function() {
-            window.location.href = '/iteration1/';
+            window.location.href = '/iteration2/';
         }, 1000);
     </script>
 </body>
@@ -158,7 +158,7 @@ const redirectHtml = `<!DOCTYPE html>
 fs.writeFileSync(path.join(distDir, 'index.html'), redirectHtml);
 
 console.log('✅ Build post-processing complete:');
-console.log('   - All application files moved to /iteration1/ subdirectory');
+console.log('   - All application files moved to /iteration2/ subdirectory');
 console.log('   - Root redirect page created');
 console.log('   - Deployment optimized - no duplicate files');
 console.log('   - Ready for deployment with clean subdirectory structure');

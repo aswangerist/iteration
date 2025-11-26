@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A fictional web graphic hypernarrative designed to reintroduce Tagalog folklore to the digital generation",
-  "homepage": "https://aswangchronicles.com/iteration1",
+  "homepage": "https://aswangchronicles.com/iteration2",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"

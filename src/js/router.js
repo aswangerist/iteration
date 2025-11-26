@@ -15,8 +15,8 @@ class Router {
   handleRoute() {
     let path = window.location.pathname;
     
-    // Remove base path /iteration1 if present
-    const basePath = '/iteration1';
+    // Remove base path /iteration2 if present
+    const basePath = '/iteration2';
     if (path.startsWith(basePath)) {
       path = path.substring(basePath.length) || '/';
     }
@@ -40,7 +40,7 @@ class Router {
       this.loadComponent(route);
       
       // Update browser URL without page reload
-      const fullPath = path === '/' ? '/iteration1/' : `/iteration1${path}`;
+      const fullPath = path === '/' ? '/iteration2/' : `/iteration2${path}`;
       if (window.location.pathname !== fullPath) {
         window.history.pushState(null, '', fullPath);
       }
@@ -231,7 +231,7 @@ class Router {
   }
 
   navigateTo(path) {
-    const fullPath = path === '/' ? '/iteration1/' : `/iteration1${path}`;
+    const fullPath = path === '/' ? '/iteration2/' : `/iteration2${path}`;
     window.history.pushState(null, '', fullPath);
     this.handleRoute();
   }

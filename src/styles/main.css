@@ -124,19 +124,90 @@ body {
 
 @keyframes bloodDrip {
   0% {
-    transform: translateY(-100px);
+    transform: translateY(-100px) scaleX(1);
     opacity: 0;
   }
   10% {
-    opacity: 0.6;
+    opacity: 0.8;
+    transform: translateY(-50px) scaleX(1);
+  }
+  50% {
+    transform: translateY(50vh) scaleX(1.5);
+    opacity: 0.7;
   }
   90% {
     opacity: 0.6;
+    transform: translateY(95vh) scaleX(2);
   }
   100% {
-    transform: translateY(100vh);
+    transform: translateY(100vh) scaleX(2.5);
     opacity: 0;
   }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+@keyframes redPulse {
+  0%, 100% { box-shadow: 0 0 5px var(--red); }
+  50% { box-shadow: 0 0 25px var(--red), 0 0 50px var(--red); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-1deg); }
+  75% { transform: translateX(5px) rotate(1deg); }
+}
+
+/* Horror Atmosphere Effects */
+.horror-grain::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: var(--z-floating);
+  animation: grain 0.5s steps(6) infinite;
+}
+
+.horror-vignette::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.4) 80%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Responsive Design */

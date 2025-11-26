@@ -13,25 +13,25 @@ export function Footer() {
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="footer-title">Explore</h5>
                     <ul class="footer-links">
                         <li><a href="#" data-route="/">Home</a></li>
                         <li><a href="#" data-route="/archives">Aswang Archives</a></li>
                         <li><a href="#" data-route="/contact">Contact Us</a></li>
-                        <li><a href="https://aswang-chronicles.itch.io/aswang-chronicles-spoon-test" target="_blank">Play Game</a></li>
+                        <li><a href="#" data-route="/game">Play Game</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <!-- <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="footer-title">Resources</h5>
                     <ul class="footer-links">
                         <li><a href="#" data-route="/">About Project</a></li>
                         <li><a href="#" data-route="/archives">Folklore Database</a></li>
-                        <li><a href="#">Cultural Guide</a></li>
-                        <li><a href="#">Educational Content</a></li>
+                        <li><a href="#" data-route="/archives">Cultural Guide</a></li>
+                        <li><a href="#" data-route="/game">Educational Content</a></li>
                     </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                </div> -->
+                <div class="col-lg-5 col-md-6 mb-4">
                     <h5 class="footer-title">Connect</h5>
                     <div class="footer-social">
                         <a href="https://www.facebook.com/aswangchronicles1" class="social-link" title="Facebook" target="_blank">

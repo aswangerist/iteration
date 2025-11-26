@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig(({ command, mode }) => ({
-  base: process.env.VERCEL ? '/' : command === 'build' ? '/iteration1/' : '/',
+  base: process.env.VERCEL ? '/' : command === 'build' ? '/iteration2/' : '/',
   root: '.',
   publicDir: 'public',
   build: {
@@ -110,8 +110,8 @@ export default defineConfig(({ command, mode }) => ({
         theme_color: '#BD0300',
         background_color: '#001915',
         display: 'standalone',
-        scope: '/iteration1/',
-        start_url: '/iteration1/',
+        scope: '/iteration2/',
+        start_url: '/iteration2/',
         orientation: 'portrait-primary',
         icons: [
           {
